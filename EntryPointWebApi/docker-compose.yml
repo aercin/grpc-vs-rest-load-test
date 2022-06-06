@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  entrypointwebapi:
+    image: entrypoint
+    build:
+     context: .
+     dockerfile: EntryPointWebApi/Dockerfile
+    environment: 
+       ASPNETCORE_ENVIRONMENT: development
+       Integration__GrpcService: http://192.168.1.39:5021
+       Integration__RestApi: http://192.168.1.39:5022
+    ports:
+     - 5020:80
+    depends_on:
+     - grpcservice
+     - restservice
+  grpcservice:
+    image: dummygrpc
+    build:
+     context: .
+     dockerfile: DummyGrpcService/Dockerfile
+    environment: 
+      ASPNETCORE_ENVIRONMENT: development
+    ports:
+     - 5021:80
+  restservice:
+    image: dummyrest
+    build: 
+     context: .
+     dockerfile: DummyRestWebApi/Dockerfile
+    environment: 
+      ASPNETCORE_ENVIRONMENT: development
+    ports:
+     - 5022:80

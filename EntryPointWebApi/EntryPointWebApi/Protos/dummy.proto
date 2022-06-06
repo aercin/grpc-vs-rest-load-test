@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option csharp_namespace = "EntryPointWebApi";
+
+package dummy;
+
+service TestProtoBuf {
+  rpc Test (TestProtoBufRequest) returns (TestProtoBufResponse);
+}
+
+message TestProtoBufRequest {
+  SearchFilter Filter = 1;
+}
+
+message TestProtoBufResponse {
+   repeated User Users =1;
+}
+
+message SearchFilter {
+	int32 Id = 1;
+	string Name =2;
+	string Surname=3;
+	string City=4;
+}
+
+message Address {
+	string City = 1;
+	string Region = 2;
+} 
+
+message User {
+    int32 Id = 1;
+    string Name = 2;
+    string Surname = 3;
+    int32 Age = 4;
+    repeated  Address Adrresses = 5;
+} 
