@@ -1,2 +1,0 @@
-obj\Debug\net6.0\Protos/Dummy.cs \
-obj\Debug\net6.0\Protos/DummyGrpc.cs: Protos/dummy.proto
